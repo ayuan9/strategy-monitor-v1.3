@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>事件合约策略监控系统 v1.3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>📈 事件合约策略监控系统 v1.3</h1>
+        <p>监控币种：<span id="symbol">BTCUSDT / ETHUSDT</span></p>
+        <p>更新时间：<span id="updated"></span></p>
+    </header>
+
+    <main>
+        <section id="market-status">
+            <h2>📊 当前市场状态</h2>
+            <p>结构识别：<span id="market-structure">加载中...</span></p>
+            <p>当前打分：<span id="score">-</span> / 6</p>
+            <p>建议操作：<strong id="action">等待信号</strong></p>
+        </section>
+
+        <section id="winrate">
+            <h2>✅ 胜率曲线</h2>
+            <canvas id="winrateChart" width="300" height="150"></canvas>
+        </section>
+
+        <section id="trades">
+            <h2>📝 模拟交易记录</h2>
+            <button id="export">导出 CSV</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>方向</th>
+                        <th>打分</th>
+                        <th>命中</th>
+                        <th>盈亏</th>
+                    </tr>
+                </thead>
+                <tbody id="tradeTable">
+                    <!-- 模拟交易数据插入位置 -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Powered by v1.3 策略引擎 | 本页面每3分钟刷新</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
