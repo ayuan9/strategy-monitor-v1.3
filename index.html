@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Dashboard</title>
+    <!-- 外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    
+    <!-- Tailwind 配置引入 -->
+    <script src="./tailwind.config.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <<i class="fa fa-line-chart text-blue-500 text-2xl"></</i>
+                <h1 class="text-xl font-bold">Binance Dashboard</h1>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-white hover:text-blue-400 transition-colors">Markets</a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Charts</a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">About</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="refresh-btn" class="p-2 rounded-full hover:bg-gray-800 transition-colors">
+                    <<i class="fa fa-refresh"></</i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- 价格图表区域 -->
+        <div class="mb-8 bg-gray-800 rounded-xl p-4 md:p-6 shadow-lg">
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center space-x-3">
+                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=023" alt="Bitcoin" class="w-10 h-10 rounded-full">
+                    <div>
+                        <h3 class="text-xl font-bold">Bitcoin (BTC)</h3>
+                        <p class="text-gray-400 text-sm">BTC/USDT</p>
+                    </div>
+                </div>
+                
+                <div class="text-right">
+                    <div class="text-2xl font-bold" id="btc-price">$0.00</div>
+                    <div class="flex items-center justify-end" id="btc-change">
+                        <<i class="fa fa-arrow-up mr-1"></</i>
+                        <span>0.00%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 时间周期选择 -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                <button class="time-interval-btn bg-blue-600 text-white px-3 py-1 rounded-full text-sm" data-interval="1h">1H</button>
+                <button class="time-interval-btn bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-full text-sm" data-interval="4h">4H</button>
+                <button class="time-interval-btn bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-full text-sm" data-interval="1d">1D</button>
+                <button class="time-interval-btn bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-full text-sm" data-interval="1w">1W</button>
+            </div>
+            
+            <!-- 图表容器 -->
+            <div class="h-80">
+                <canvas id="priceChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- 市场列表 -->
+        <div class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-lg overflow-hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Top Markets (USDT)</h3>
+                <div class="relative w-full md:w-64">
+                    <input type="text" id="search-input" placeholder="Search coins..." class="w-full bg-gray-900 border border-gray-700 rounded-lg py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500/50">
+                    <<i class="fa fa-search absolute left-3 top-3 text-gray-400"></</i>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-[800px]">
+                    <thead>
+                        <tr class="border-b border-gray-700">
+                            <<th class="text-left py-4 px-2 text-gray-400 font-medium">Rank</</th>
+                            <<th class="text-left py-4 px-2 text-gray-400 font-medium">Name</</th>
+                            <<th class="text-right py-4 px-2 text-gray-400 font-medium">Price</</th>
+                            <<th class="text-right py-4 px-2 text-gray-400 font-medium">24h Change</</th>
+                            <<th class="text-right py-4 px-2 text-gray-400 font-medium">24h Volume</</th>
+                        </tr>
+                    </thead>
+                    <tbody id="markets-table">
+                        <!-- 表格数据将通过JS动态填充 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 border-t border-gray-700 mt-12 py-6">
+        <div class="container mx-auto px-4 text-center text-gray-400 text-sm">
+            <p>Data provided by Binance API | Deployed on Vercel</p>
+        </div>
+    </footer>
+
+    <!-- 引入自定义脚本 -->
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
