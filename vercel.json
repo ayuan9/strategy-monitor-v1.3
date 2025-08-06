@@ -1,8 +1,0 @@
-{
-  "version": 2,
-  "routes": [
-    { "src": "/api/status", "dest": "api/status.py" },
-    { "src": "/api/export", "dest": "api/export.py" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
-}
