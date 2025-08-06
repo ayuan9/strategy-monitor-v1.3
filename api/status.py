@@ -66,7 +66,4 @@ def write_trade(trade):
             trade["hit"],
             trade["profit"]
         ])
-
-# ✅ 必须加上这一句，告诉 Vercel 你导出的是 app 实例
-# 这一步是解决 issubclass 错误的核心！
 handler = app
