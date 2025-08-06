@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/status.py", "use": "@vercel/python" },
+    { "src": "api/export.py", "use": "@vercel/python" }
+  ],
+  "routes": [
+    { "src": "/api/status", "dest": "api/status.py" },
+    { "src": "/api/export", "dest": "api/export.py" }
+  ]
+}
