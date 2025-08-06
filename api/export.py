@@ -19,6 +19,4 @@ def handler():
             "Content-Disposition": "attachment; filename=trade_log.csv"
         }
     )
-
-# ✅ 告诉 Vercel handler 是 app
 handler = app
